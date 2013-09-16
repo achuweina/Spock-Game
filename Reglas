@@ -1,0 +1,103 @@
+package PPTLS;
+
+import java.util.Scanner;
+
+public class Reglas {
+	static Scanner teclado = new Scanner(System.in);
+	static Jugadores [] players;
+	public static void reglas() {
+		System.out.println("Bienvenidos a Piedra, papel, tijera, lagarto, Spock." +
+				"\nLas reglas son muy sencillas: \n1ª: Las tijeras cortan el papel. \n2ª: El papel cubre a la piedra." +
+				"\n3ª: La piedra aplasta al lagarto. \n4ª: El lagarto envenena a Spock. \n5ª: Spock destroza las tijeras." +
+				"\n6ª: Las tijeras decapitan al lagarto.\n7ª: El lagarto se come el papel. \n8ª: El papel refuta a Spock." +
+				"\n9ª: Spock vaporiza la piedra.\nY 10ª: Como es habitual… la piedra aplasta las tijeras." +
+				"\nSe juega al mejor de 5 partidas. Disfruten con el juego."); 
+	}
+
+	
+	
+	public static void jugar(int jugadoresHumanos){
+		int e = 0; 					
+		int numJugadores = jugadoresHumanos;
+		if (jugadoresHumanos==1){
+			numJugadores = 2;
+		}
+		players = new Jugadores [numJugadores];
+		if(jugadoresHumanos == 1){
+			System.out.println("Introduzca el nombre del jugador humano:");
+			for (int i = 0; i < numJugadores -1; i++){
+				System.out.println("Jugador " + (i + 1));
+				String n = teclado.next();
+				int p = 0;																						
+				players[0] = new Jugadores(n, p, e);
+				n = "Joshua";
+				p = 0;																						
+				players[1] = new Jugadores(n, p, e);
+			}
+		}
+		else{
+			System.out.println("Introduzca el nombre de los jugadores:");
+			for (int i = 0; i < numJugadores; i++){
+				System.out.println("Jugador " + (i + 1));
+				String n = teclado.next();
+				int p = 0;																						
+				players[i] = new Jugadores(n, p, e);
+			}
+		}
+		boolean finPartida = false;
+		do{			
+			for (int i = 0; i < numJugadores; i++){
+				System.out.println(players[i].name + " introduzca su jugada.");
+				if (jugadoresHumanos==1 && i==1){
+					
+					players [i].eleccion = (int) (Math.random() * 5 + 1);
+				}
+				else{
+					do{
+					players[i].eleccion = Jugadores.eleccion(e);						
+					}while(Validaciones.validarEleccion(players[i].eleccion));
+				}
+			}	
+			for (int i = 0; i < numJugadores; i++){
+				for (int j = 0; j < numJugadores; j++){
+						if(j!=i){
+							int puntuacion;
+						
+							if(numJugadores>2){
+								puntuacion = Matrices.resultado[players[i].getEleccion()-1][players[j].getEleccion()-1];
+							}
+							else{
+								puntuacion = Matrices.resultado2J[players[i].getEleccion()-1][players[j].getEleccion()-1];
+							}
+							players[i].puntuacion += puntuacion;
+							if(puntuacion==1){
+								System.out.println(Matrices.mensaje[players[i].getEleccion()-1][players[j].getEleccion()-1]+"\n");
+							}
+						}
+					}
+				}
+				System.out.println("Puntuaciónes:");
+				for (int i = 0; i < numJugadores; i++){
+					System.out.println(players[i].getName() + ": " + players[i].getPuntuacion());
+				}		
+				System.out.println("\n");
+				
+				for (int i = 0; i < numJugadores; i++){
+					if(players[i].getPuntuacion()>=Matrices.victoria){
+						finPartida=true;						
+					}
+				}				
+			}while(!finPartida);
+		
+		System.out.println("\nPuntuación final: \n");
+		for (int i = 0; i < numJugadores; i++){
+			System.out.println(players[i].getName() + ": " + players[i].getPuntuacion() + "\n");
+		}		
+		
+		for (int i = 0; i < numJugadores; i++){
+			if(players[i].getPuntuacion()>=Matrices.victoria){
+				System.out.println("El ganador de la partida es: " + players[i].getName());
+			}
+		}		
+	}		
+}
