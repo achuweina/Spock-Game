@@ -1,0 +1,23 @@
+package PPTLS;
+
+
+public class Validaciones {	
+	public static boolean validarEleccion(int e){		
+		if (e <= 0 || e >= 6){
+			System.out.println("Nº de elección errónea. Porfavor, vuelva a intentarlo.");
+			return true;
+		}						
+		else
+		return false;
+	}
+	
+	public static boolean validarNumJugadores(int eleccionNumJugadores){
+		if (eleccionNumJugadores <= 0 || eleccionNumJugadores >= 4){
+			System.out.println("Nº de elección errónea. Porfavor, vuelva a intentarlo.");	
+			return true;
+		}
+		else
+		return false;		
+	}
+	
+}
