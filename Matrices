@@ -1,0 +1,17 @@
+package PPTLS;
+
+public class Matrices {
+	public static int[][] resultado = {{0,-1,1,1,-1},{1,0,-1,-1,1},{-1,1,0,1,-1},{-1,1,-1,0,1},{1,-1,1,-1,0}};
+	public static int[][] resultado2J = {{0,0,1,1,0},{1,0,0,0,1},{0,1,0,1,0},{0,1,0,0,1},{1,0,1,0,0}};
+	public static String[][] mensaje = {{"","","La piedra aplasta las tijeras.","La piedra aplasta al lagarto.",""},
+		                               {"El papel cubre a la piedra.","","","","El papel refuta a Spock."},
+		                               {"","Las tijeras cortan el papel.","","Las tijeras decapitan al lagarto.",""},
+		                               {"","El lagarto se come el papel.","","","El lagarto envenena a Spock."},
+		                               {"Spock vaporiza la piedra.","","Spock destroza las tijeras.","",""}};
+	public static int victoria = 5;
+	
+	public void Matrices() {
+		
+	}
+
+}
