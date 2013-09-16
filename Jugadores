@@ -1,0 +1,53 @@
+package PPTLS;
+
+import java.util.Scanner;
+
+
+public class Jugadores {
+	public String name;	
+	public int puntuacion = 0;
+	public int eleccion;
+	public Jugadores(String n, int p, int e){	
+		name = n;		
+		puntuacion = p;
+		eleccion = e;
+	}	
+	
+	public String getName(){
+		return name;
+	}
+	
+	public int getPuntuacion(){		
+		return puntuacion;
+	}
+	
+	public int getEleccion(){
+		return eleccion;
+	}
+	
+	public static int eleccion(int e){
+		Scanner teclado = new Scanner(System.in);		
+		do{
+			System.out.println("Elija su opción:\n1.- Piedra.\n2.- Papel.\n3.- Tijeras.\n4.- Lagarto.\n5.- Spock.");
+			try{
+				String p = teclado.next();
+				e = Integer.parseInt(p);
+			}catch(Exception ex){				
+				e = -1;
+			}
+		}while(Validaciones.validarEleccion(e));
+		return e;
+	}
+	public static void eleccionJugador(){
+		int eleccionNumJugadores;
+		Scanner teclado = new Scanner(System.in);
+		do{			
+			System.out.println("Introduzca el número de jugadores.\nSi es 1 jugará contra la máquina.");
+			eleccionNumJugadores = teclado.nextInt();
+			Reglas.jugar(eleccionNumJugadores);
+
+		}while(Validaciones.validarNumJugadores(eleccionNumJugadores));				
+		Jugadores[]players = new Jugadores[eleccionNumJugadores+1];
+
+	}
+}
