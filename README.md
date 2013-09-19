@@ -1,4 +1,4 @@
-Spock-Game
+JAVA rock, paper, scissors, lizard, Spock
 ==========
 
 The popular game from T.B.B.T. rock, paper, scissors, lizard, Spock!!
